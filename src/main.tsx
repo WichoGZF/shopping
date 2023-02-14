@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {
   createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from 'react-router-dom';
 
@@ -14,7 +15,7 @@ import Product from './components/product/Product';
 import Category from './components/categories/Category';
 import mainLoader from './services/mainLoader';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     element: <App />,
     errorElement: <NotFoundTitle></NotFoundTitle>,
