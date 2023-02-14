@@ -1,4 +1,5 @@
 import { Breadcrumbs, Group, Title, Stack} from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import { Link, useActionData, useLoaderData, useParams } from "react-router-dom";
 
 import { Product } from "../../types/Product";
@@ -9,7 +10,10 @@ import ProductCard from "../landing/ProductCard";
 export default function Category(props: any) {
     const { categoryName } = useParams();
 
+    const matches = useMediaQuery('(max-width:960px)');
+
     const data = useLoaderData() as Data
+    
 
     const titleName = categoryName?.charAt(0).toUpperCase() + categoryName!.slice(1);
 
@@ -28,15 +32,15 @@ export default function Category(props: any) {
     })
 
     const itemsBreadcrumbsList = [
-        <Link to='..'>Home</Link>,
-        <Link to='.'>{titleName}</Link>,
+        <Link key='home' to='..'>Home</Link>,
+        <Link key={titleName} to='.'>{titleName}</Link>,
     ]
 
     return (
-        <Stack>
+        <Stack >
             <Breadcrumbs>{itemsBreadcrumbsList}</Breadcrumbs>
-            <Title>{titleName}  products</Title>
-            <Group>
+            <Title align={matches? 'center': 'start'}>{titleName}  products</Title>
+            <Group position={matches? 'center': 'left'}>
                 {productList}
             </Group>
         </Stack>

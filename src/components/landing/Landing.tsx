@@ -1,6 +1,6 @@
 import {
     Stack, Container, createStyles, Group, Title, Text, Button,
-    Image, Divider, Center
+    Image, Divider, Center, MediaQuery
 } from '@mantine/core';
 import bannerOne from '../../assets/banner1.png';
 import bannerTwo from '../../assets/banner2.png';
@@ -11,14 +11,15 @@ import mensClothImage from '../../assets/mens-clothing.jpg'
 import womensClothImage from '../../assets/womens-clothing.jpg'
 
 import { IconArrowNarrowRight, IconCreditCard, IconShieldCheck, IconTruckDelivery } from "@tabler/icons-react";
-import { useContext } from "react";
 import Banner from "./Banner";
 import ProductCard from "./ProductCard";
 
-import { useRouteLoaderData, Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 import { Category } from '../../types/Category';
 import { Product } from '../../types/Product';
+
+import { useMediaQuery } from '@mantine/hooks';
 
 const useStyles = createStyles((theme) => ({
     mainFlex: {
@@ -40,7 +41,7 @@ const useStyles = createStyles((theme) => ({
     },
     imageRadius: {
         borderRadius: '50%'
-    }
+    },
 }));
 
 interface Data {
@@ -52,6 +53,8 @@ export default function Landing() {
     const { classes } = useStyles();
 
     const data = useLoaderData() as Data
+
+    const matches = useMediaQuery('(max-width:960px)');
 
     const initialItemsList = data.initialProducts.map((item) => {
         return (
@@ -66,14 +69,102 @@ export default function Landing() {
         )
     })
 
+    let infoColumns;
+
+    if (matches) {
+        infoColumns = <Stack spacing={64}>
+            <Stack align='center'>
+                <IconCreditCard size={32}></IconCreditCard>
+                <Text fz='md'>Payment is your choice</Text>
+                <Text fz='sm' align='center' className={classes.newlineText}> With Compumundo pay
+                    with credit or debit. You can also pay in
+                    up to 12 months with out credit card.
+                </Text>
+                <a href=''>
+                    <Text fz='sm' align='center'>
+                        How to add a payment method.
+                    </Text>
+                </a>
+            </Stack>
+            <Stack align='center'>
+                <IconTruckDelivery size={32}></IconTruckDelivery>
+                <Text fz='md'>Free shipping in orders above $50</Text>
+                <Text fz='sm' align='center' className={classes.newlineText}>
+                    You have free shipping on millions of selected products.*
+                </Text>
+                <a href=''>
+                    <Text fz='sm' align='center'>
+                        Learn more about this benefit.
+                    </Text>
+                </a>
+            </Stack>
+            <Stack align='center'>
+                <IconShieldCheck size={32}></IconShieldCheck>
+                <Text fz='md'>Safety from start to finish</Text>
+                <Text fz='sm' align='center' className={classes.newlineText}>We have a 30 day free return policy. If you don't like it, send it back and we'll
+                    get you your money back. You're safe with us!
+                    {"\n\n"}
+                </Text>
+                <a href=''>
+                    <Text fz='sm' align='center'>
+                        How we protect you.
+                    </Text>
+                </a>
+            </Stack>
+        </Stack>
+    }
+    else {
+        infoColumns = <Group noWrap={true} spacing={'md'} grow={true} align='flex-start'>
+
+            <Stack align='center'>
+                <IconCreditCard size={32}></IconCreditCard>
+                <Text fz='md'>Payment is your choice</Text>
+                <Text fz='sm' align='center' className={classes.newlineText}> With Compumundo pay
+                    with credit or debit. You can also pay in
+                    up to 12 months with out credit card.
+                </Text>
+                <a href=''>
+                    <Text fz='sm' align='center'>
+                        How to add a payment method.
+                    </Text>
+                </a>
+            </Stack>
+            <Stack align='center'>
+                <IconTruckDelivery size={32}></IconTruckDelivery>
+                <Text fz='md'>Free shipping in orders above $50</Text>
+                <Text fz='sm' align='center' className={classes.newlineText}>
+                    You have free shipping on millions of selected products.*
+                </Text>
+                <a href=''>
+                    <Text fz='sm' align='center'>
+                        Learn more about this benefit.
+                    </Text>
+                </a>
+            </Stack>
+            <Stack align='center'>
+                <IconShieldCheck size={32}></IconShieldCheck>
+                <Text fz='md'>Safety from start to finish</Text>
+                <Text fz='sm' align='center' className={classes.newlineText}>We have a 30 day free return policy. If you don't like it, send it back and we'll
+                    get you your money back. You're safe with us!
+                    {"\n\n"}
+                </Text>
+                <a href=''>
+                    <Text fz='sm' align='center'>
+                        How we protect you.
+                    </Text>
+                </a>
+            </Stack>
+        </Group>
+    }
+
     return (
         <>
-            <Banner
+            {matches ? <></> : <Banner
                 title='Welcome 2023 with everything you need.'
                 text='Find everything to reach your goals and reinvent yourself in the process.'
                 link=''
                 imageLink={bannerOne}
-            ></Banner>
+            ></Banner>}
 
             <Divider></Divider>
             <Stack>
@@ -87,13 +178,13 @@ export default function Landing() {
                         </Button>
                     </Link>
                 </Group>
-                <Group spacing={32}>
+                <Group spacing={32} position={matches ? 'center' : 'left'}>
                     {initialItemsList}
                 </Group>
             </Stack>
             <Divider></Divider>
             <Stack>
-                <Group>
+                <Group position={matches ? 'center' : 'left'}>
                     <Title order={1}>
                         Categories
                     </Title>
@@ -137,47 +228,8 @@ export default function Landing() {
                 </Group>
             </Stack>
             <Divider></Divider>
-            <Group noWrap={true} spacing={'md'} grow={true} align='flex-start'>
+            {infoColumns}
 
-                <Stack align='center'>
-                    <IconCreditCard size={32}></IconCreditCard>
-                    <Text fz='md'>Payment is your choice</Text>
-                    <Text fz='sm' align='center' className={classes.newlineText}> With Compumundo pay
-                        with credit or debit. You can also pay in
-                        up to 12 months with out credit card.
-                    </Text>
-                    <a href=''>
-                        <Text fz='sm' align='center'>
-                            How to add a payment method.
-                        </Text>
-                    </a>
-                </Stack>
-                <Stack align='center'>
-                    <IconTruckDelivery size={32}></IconTruckDelivery>
-                    <Text fz='md'>Free shipping in orders above $50</Text>
-                    <Text fz='sm' align='center' className={classes.newlineText}>
-                        You have free shipping on millions of selected products.*
-                    </Text>
-                    <a href=''>
-                        <Text fz='sm' align='center'>
-                            Learn more about this benefit.
-                        </Text>
-                    </a>
-                </Stack>
-                <Stack align='center'>
-                    <IconShieldCheck size={32}></IconShieldCheck>
-                    <Text fz='md'>Safety from start to finish</Text>
-                    <Text fz='sm' align='center' className={classes.newlineText}>We have a 30 day free return policy. If you don't like it, send it back and we'll
-                        get you your money back. You're safe with us!
-                        {"\n\n"}
-                    </Text>
-                    <a href=''>
-                        <Text fz='sm' align='center'>
-                            How we protect you.
-                        </Text>
-                    </a>
-                </Stack>
-            </Group>
         </>
     )
 }
