@@ -1,33 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
+import { Outlet, ScrollRestoration } from "react-router-dom";
+import { AppShell, Container, createStyles, Stack } from '@mantine/core';
+import HeaderSearch from './components/reusables/HeaderSearch';
+import FooterReusable from './components/reusables/FooterReusable';
+
+const useStyles = createStyles((theme) => ({
+  mainFlex: {
+    width: '100%',
+    maxWidth: '1500px'
+  },
+}));
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { classes } = useStyles();
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+      <AppShell
+        padding="md"
+        header={<HeaderSearch></HeaderSearch>}
+        footer={<FooterReusable></FooterReusable>}
+      >
+        <Container>
+          <Stack className={classes.mainFlex} spacing={48}>
+            <Outlet></Outlet>
+            <ScrollRestoration></ScrollRestoration>
+          </Stack>
+        </Container>
+      </AppShell>
+    </div >
   )
 }
 
