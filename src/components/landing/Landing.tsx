@@ -70,7 +70,7 @@ export default function Landing() {
         <>
             <Banner
                 title='Welcome 2023 with everything you need.'
-                text='Find everything to reach your goals.'
+                text='Find everything to reach your goals and reinvent yourself in the process.'
                 link=''
                 imageLink={bannerOne}
             ></Banner>

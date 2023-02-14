@@ -41,10 +41,10 @@ export default function Banner({title, text, link, imageLink}: BannerProps){
         <Flex className={classes.bannerContainer}>
             <div className={classes.bannerContent}>
                 <Stack spacing='md'>
-                    <Title order={3}>
+                    <Title order={3} color='#b0eeff'>
                         {title}
                     </Title>
-                    <Text fz={"md"}>
+                    <Text fz={"md"} color='#b0eeff'>
                         {text}
                     </Text>
                 
