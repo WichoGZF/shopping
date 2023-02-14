@@ -6,6 +6,8 @@ import { Product } from "../../types/Product";
 
 import ProductCard from "../landing/ProductCard";
 
+type Data = Product[]
+
 
 export default function Category(props: any) {
     const { categoryName } = useParams();
@@ -26,8 +28,7 @@ export default function Category(props: any) {
                 price={product.price}
                 id={product.id}
                 key={product.id}
-            >
-            </ProductCard>
+            />
         )
     })
 
