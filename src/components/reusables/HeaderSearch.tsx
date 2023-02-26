@@ -97,10 +97,10 @@ export default function HeaderSearch() {
                     <Group>
                         <TextInput
                             icon={<IconSearch size={18} stroke={1.5} />}
-                            radius="xl"
                             size="md"
+                            radius={'md'}
                             rightSection={
-                                <ActionIcon size={32} radius="xl" color={theme.primaryColor} variant="filled">
+                                <ActionIcon size={32} radius={'md'} color={theme.primaryColor} variant="filled">
                                     {theme.dir === 'ltr' ? (
                                         <IconArrowRight size={18} stroke={1.5} />
                                     ) : (

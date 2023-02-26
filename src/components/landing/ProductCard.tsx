@@ -22,7 +22,7 @@ export default function ProductCard({ imageSrc, productName, price, id }: Produc
 
     
     return (
-        <Link to={`product/${id}`}>
+        <Link relative='path' to={`/product/${id}`}>
             <Card shadow='sm' p='lg' radius='md' withBorder className={classes.cardSize}>
                 <Card.Section>
                     <Image height={200} width={200} src={imageSrc}></Image>
