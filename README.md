@@ -50,14 +50,15 @@ This project is a shopping front-end page that interacts with a public API to di
 ## Code Structure and Organization
 
 The project's codebase is organized as follows:
-
-├── src/
-│ ├── assets/ # Contains images 
-│ ├── components/ # Contains the components used in the application
-│ ├── services/ # Contains API service functions
-│ ├── types/ # Contains TypeScript type definitions
-│ ├── App.tsx # Entry point of the application
-│ ├── index.tsx # Initializes the React application
-│ └── ...
-├── public/ # Contains public assets and index.html
-└── ...
+  ```plaintext
+  ├── src/
+  │ ├── assets/ # Contains images
+  │ ├── components/ # Contains the components used in the application
+  │ ├── services/ # Contains API service functions
+  │ ├── types/ # Contains TypeScript type definitions
+  │ ├── App.tsx # Entry point of the application
+  │ ├── index.tsx # Initializes the React application
+  │ └── ...
+  ├── public/ # Contains public assets and index.html
+  └── ...
+  ```
